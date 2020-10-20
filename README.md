@@ -21,7 +21,7 @@ sudo apt update && sudo apt install -y \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-# Install tools
+# Install development tools
 sudo apt update && sudo apt upgrade
 sudo apt install -y \
     containerd.io \
@@ -32,4 +32,7 @@ sudo apt install -y \
 
 # Add user to docker group
 sudo usermod -aG docker $USER
+
+# Test the installation
+docker run --rm hello-world
 ```
