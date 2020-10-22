@@ -68,6 +68,7 @@ git config --global user.email "${email}"
 git config --global user.name "${username}"
 git config --global user.signingkey "${gpgkeyid}"
 git config --global commit.gpgsign true
+git config --global core.excludesfile ~/.gitignore_global
 
 # Generate a new key
 ssh-keygen -t rsa -b 4096 -C "${email}"
@@ -79,3 +80,5 @@ ssh-add ~/.ssh/github_rsa
 # Display the public key ready to be copy pasted to GitHub
 cat ~/.ssh/github_rsa.pub
 ```
+
+- [Add the generated key to GitHub](https://github.com/settings/ssh/new)
