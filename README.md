@@ -36,3 +36,12 @@ sudo usermod -aG docker $USER
 # Test the installation
 docker run --rm hello-world
 ```
+
+#### Restore (or generate) the GPG key
+
+- On old system, create a backup of a GPG key
+  - `gpg --list-secret-keys`
+  - `gpg --export-secret-keys {{KEY_ID}} > /tmp/private.key`
+- On new system, import the key:
+  - `gpg --import /tmp/private.key`
+- Delete the `/tmp/private.key` on both sides
