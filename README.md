@@ -54,3 +54,28 @@ docker run --rm hello-world
 - On new system, import the key:
   - `gpg --import /tmp/private.key`
 - Delete the `/tmp/private.key` on both sides
+
+#### Setup Git
+
+```bash
+# Set the git author email and username
+email="EMAIL"
+username="USERNAME"
+gpgkeyid="KEY_ID"
+
+# Configure Git
+git config --global user.email "${email}"
+git config --global user.name "${username}"
+git config --global user.signingkey "${gpgkeyid}"
+git config --global commit.gpgsign true
+
+# Generate a new key
+ssh-keygen -t rsa -b 4096 -C "${email}"
+
+# Start ssh-agent and add the key to it
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/github_rsa
+
+# Display the public key ready to be copy pasted to GitHub
+cat ~/.ssh/github_rsa.pub
+```
