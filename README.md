@@ -6,7 +6,18 @@ Install
 
 ### On WSL 2
 
-#### Install dependencies
+#### 1. Enable WSL2
+
+Run in PowerShell, as admin (elevated):
+
+```ps1
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```
+
+- [Install Ubuntu from Microsoft Store](https://www.microsoft.com/en-au/p/ubuntu/9nblggh4msv6)
+
+#### 2. Install dependencies
 
 ```bash
 # Use apt over HTTPS
@@ -37,7 +48,8 @@ sudo apt install -y \
     git \
     gnupg \
     nodejs \
-    yarn
+    yarn \
+    zsh
 
 # Add user to docker group
 sudo usermod -aG docker $USER
@@ -46,7 +58,7 @@ sudo usermod -aG docker $USER
 docker run --rm hello-world
 ```
 
-#### Restore (or generate) the GPG key
+#### 3. Restore (or generate) the GPG key
 
 - On old system, create a backup of a GPG key
   - `gpg --list-secret-keys`
@@ -55,7 +67,7 @@ docker run --rm hello-world
   - `gpg --import /tmp/private.key`
 - Delete the `/tmp/private.key` on both sides
 
-#### Setup Git
+#### 4. Setup Git
 
 ```bash
 # Set the git author email and username
@@ -68,7 +80,7 @@ git config --global user.email "${email}"
 git config --global user.name "${username}"
 git config --global user.signingkey "${gpgkeyid}"
 git config --global commit.gpgsign true
-git config --global core.excludesfile ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore
 
 # Generate a new key
 ssh-keygen -t rsa -b 4096 -C "${email}"
@@ -82,3 +94,20 @@ cat ~/.ssh/github_rsa.pub
 ```
 
 - [Add the generated key to GitHub](https://github.com/settings/ssh/new)
+
+#### 5. Setup zsh
+
+```bash
+# Change the default shell to ZSH
+chsh -s /usr/bin/zsh
+
+# Create a Code directory for all our work
+mkdir ~/Code
+
+# Finally clone the repository
+mkdir -p ~/.dotfiles
+git clone git@github.com:zahav/wsl-dotfiles.git ~/.dotfiles
+
+# Link custom dotfiles
+ln -sf ~/.dotfiles/.gitignore_global ~/.gitignore
+```
