@@ -107,7 +107,7 @@ cat $HOME/.ssh/github_rsa.pub
 
 ```bash
 # Change the default shell to ZSH
-chsh -s /usr/bin/zsh
+chsh -s $(which zsh)
 
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -121,6 +121,7 @@ rm $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
 # Link custom dotfiles
+ln -s $HOME/.dotfiles/.aliases.zsh $HOME/.aliases.zsh
 ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore
 ```
 
