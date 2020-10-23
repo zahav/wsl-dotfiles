@@ -85,36 +85,43 @@ git config --global user.email "${email}"
 git config --global user.name "${username}"
 git config --global user.signingkey "${gpgkeyid}"
 git config --global commit.gpgsign true
-git config --global core.excludesfile ~/.gitignore
+git config --global core.excludesfile $HOME/.gitignore
+
+# Create a Code directory for all our work
+mkdir $HOME/Code
 
 # Generate a new key
 ssh-keygen -t rsa -b 4096 -C "${email}"
 
 # Start ssh-agent and add the key to it
 eval $(ssh-agent -s)
-ssh-add ~/.ssh/github_rsa
+ssh-add $HOME/.ssh/github_rsa
 
 # Display the public key ready to be copy pasted to GitHub
-cat ~/.ssh/github_rsa.pub
+cat $HOME/.ssh/github_rsa.pub
 ```
 
 - [Add the generated key to GitHub](https://github.com/settings/ssh/new)
 
-#### 5. Setup zsh
+#### 5. Setup ZSH and Oh My Zsh
 
 ```bash
 # Change the default shell to ZSH
 chsh -s /usr/bin/zsh
 
-# Create a Code directory for all our work
-mkdir ~/Code
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Finally clone the repository
-mkdir -p ~/.dotfiles
-git clone git@github.com:zahav/wsl-dotfiles.git ~/.dotfiles
+mkdir -p $HOME/.dotfiles
+git clone git@github.com:zahav/wsl-dotfiles.git $HOME/.dotfiles
+
+# Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
+rm $HOME/.zshrc
+ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
 # Link custom dotfiles
-ln -sf ~/.dotfiles/.gitignore_global ~/.gitignore
+ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore
 ```
 
 #### 6. Customise our fonts
