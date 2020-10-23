@@ -4,7 +4,7 @@ My Windows Subsystem for Linux Setup & Dotfiles
 Install
 -------
 
-### On WSL 2
+### On Windows
 
 #### 1. Enable WSL2
 
@@ -13,9 +13,12 @@ Run in PowerShell, as admin (elevated):
 ```ps1
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+wsl --set-default-version 2
 ```
 
 - [Install Ubuntu from Microsoft Store](https://www.microsoft.com/en-au/p/ubuntu/9nblggh4msv6)
+
+### On WSL 2
 
 #### 2. Install dependencies
 
@@ -45,9 +48,11 @@ sudo apt install -y \
     containerd.io \
     docker-ce \
     docker-ce-cli \
+    fontconfig \
     git \
     gnupg \
     nodejs \
+    unzip \
     yarn \
     zsh
 
@@ -111,3 +116,19 @@ git clone git@github.com:zahav/wsl-dotfiles.git ~/.dotfiles
 # Link custom dotfiles
 ln -sf ~/.dotfiles/.gitignore_global ~/.gitignore
 ```
+
+#### 6. Customise our fonts
+
+```bash
+# Install JetBrains Mono typeface
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+```
+
+##### Alternate fonts to try
+
+- Cascadia Code
+- DejaVu Sans
+- FuraMono
+- FiraCode
+- Hack
+- Menlo
