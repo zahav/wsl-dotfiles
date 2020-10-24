@@ -148,3 +148,15 @@ ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore
 - FiraCode
 - Hack
 - Menlo
+
+#### 7. Copy useful files to Windows
+
+```bash
+windowsUserProfile=/mnt/c/Users/$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')
+
+# Windows Terminal settings
+cp $HOME/.dotfiles/terminal-settings.json ${windowsUserProfile}/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+
+# Avoid too much RAM consumption
+cp $HOME/.dotfiles/.wslconfig ${windowsUserProfile}/.wslconfig
+```

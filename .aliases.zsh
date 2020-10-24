@@ -4,7 +4,7 @@ alias c="clear"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
-alias code="cd $HOME/Code"
+alias dev="cd $HOME/Code"
 
 # Laravel
 alias art="php artisan"
