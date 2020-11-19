@@ -99,7 +99,7 @@ git config --global core.excludesfile $HOME/.gitignore
 mkdir $HOME/Code
 
 # Generate a new key
-ssh-keygen -t rsa -b 4096 -C "${email}"
+ssh-keygen -t rsa -b 4096 -C "${email}" -f github_rsa
 
 # Start ssh-agent and add the key to it
 eval $(ssh-agent -s)
