@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 16,
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.statusBar.visible": false,
+    "explorer.openEditors.visible": 0,
+    "window.openFilesInNewWindow": "on",
+    "editor.tabCompletion": "on",
+    "window.zoomLevel": 0
+}
